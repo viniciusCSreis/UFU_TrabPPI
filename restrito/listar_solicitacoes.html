@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang='pt-br'>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <title>Imobiliaria</title>
+    <link rel="shortcut icon" href="../src/img/fiveicon.ico">
+
+
+    <!-- bootstrap -->
+    <link href="https://unpkg.com/ionicons@4.4.2/dist/css/ionicons.min.css" rel="stylesheet">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <!-- Pacote de Icones -->
+    <script src="https://unpkg.com/ionicons@4.4.4/dist/ionicons.js"></script>
+    <script src="../src/js/global.js"></script>
+    <script src="../src/js/logout.js"></script>
+    <!-- css -->
+    <link rel="stylesheet" href="../src/css/restrito.css">
+
+    <meta name="author" content="Cáliton Marcos, Matheus Araujo, Vinicios Clemente">
+    <meta name="description" content="Trabalho de PPI- Imobiliaria">
+    <meta name="keywords" content="trabalho, programação, internet, imobiliaria">
+</head>
+<body>
+
+    <header>
+        <div id="navBar"></div>
+    </header>
+
+    <div class="container fundo">
+        <div class="row">
+            <div class="col-md-12">
+                <h4>Lista de Solicitações</h4>
+            </div>
+        </div>
+        <div class="table-responsive-sm">
+            <table class="table table-striped table-bordered table-hover ">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Cliente</th>
+                        <th scope="col">Imovel</th>
+                        <th scope="col">Data</th>
+                        <th scope="col">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td><a href="#" class="badge badge-info" data-toggle="modal" data-target="#cliente">Vinicius Clemente</a></td>
+                        <td><a href="#" class="badge badge-primary" onclick="openModalById('513','1')">CEP:Qualquer</a></td>
+                        <td>11/12/2015</td>
+                        <td>
+                            <button class="btn btn-info btn-sm"><ion-icon style="vertical-align: middle;"  name="call"></ion-icon>contato</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+        <div id='teste' style="display:none"> </div>
+        <div id="modal_cadastrar_imovel"></div>
+
+        <script src="../src/js/NavBarAcessoRestrito.js"></script>
+        <script src="../src/js/FormEndereco.js"></script>
+        <script src="modal/modal_cadastrar_imovel.js"></script>
+
+        <script>
+            
+            
+            let teste = new FormEndereco(document.getElementById('teste'));
+            teste.create();
+
+            createModalCadastrarImovel(document.getElementById('modal_cadastrar_imovel'),1,'PUT');
+            
+
+            let endereco = new FormEndereco(document.getElementById('formEndereco1'));
+            endereco.create();
+
+
+            NavBarAcessoRestrito.create(document.getElementById('navBar'));
+            window.imoveis={};
+        
+        $.ajax({
+            url:window.urlApi.imovel,
+            type:"GET",
+            dataType:"json",
+
+            success: function(result) {            	
+            	result.forEach((imovel, index) => {
+            		window.imoveis[imovel.id] = imovel;
+              })
+              $.ajax({
+                url:window.urlApi.solicitacao,
+                type:"GET",
+                dataType:"json",
+                success: function(result2){
+                  console.log(result2);
+                  let html='';
+                  result2.forEach((solicitacao,index) =>{
+                   html += `
+                   <td>${index + 1}</td>
+                        <td><a href="#" class="badge badge-info">${solicitacao.nome}</a></td>
+                        <td><a href="#" class="badge badge-primary" onclick="openModalById('${solicitacao.idImovel}','1')">${window.imoveis[solicitacao.idImovel].Endereco.cep}</a></td>
+                        <td>11/12/2015</td>
+                        <td>
+                            <button class="btn btn-info btn-sm"><ion-icon style="vertical-align: middle;"  name="call"></ion-icon>contato</button>
+                        </td>
+                   `
+            	})
+            	
+            	
+              $("tbody")[0].innerHTML = html;
+                }
+              })
+            },
+
+            error: function(xhr, status, error){
+              console.log(xhr);
+              console.log(status);
+              console.log(error);
+            },
+
+          });
+
+
+        </script>
+    </body>
+</html>

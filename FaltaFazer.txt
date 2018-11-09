@@ -1,0 +1,15 @@
+endereço deve ser completado pelo cep
+
+Funcionario:
+  Front:Criar,Listar,Deletar,Editar
+  Back:Criar,Listar,Deletar,Editar
+
+Imoveis:
+  Front:Exibir Clientes Disponiveis ao criar Imoveis
+  Front:Criar,Listar,Deletar,Editar
+  Back:Criar,Listar, Deletar,Editar
+  Back:Receber Foto e armazenar em subpasta
+
+Solicitações:
+  Front:Criar,Listar, Deletar, Editar
+  Back: Criar,Listar, Deletar, Editar

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang='pt-br'>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <title>Imobiliaria</title>
+    <link rel="shortcut icon" href="src/img/fiveicon.ico">
+
+    <!-- bootstrap -->
+    <link href="https://unpkg.com/ionicons@4.4.2/dist/css/ionicons.min.css" rel="stylesheet">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+    <!-- css -->
+    <link rel="stylesheet" href="src/css/main.css">
+    <link rel="stylesheet" href="src/css/consultar_imoveis.css">
+    <script src="src/js/global.js"></script>
+    <script src="src/js/login.js"></script>
+    <meta name="author" content="Cáliton Marcos, Matheus Araujo, Vinicios Clemente">
+    <meta name="description" content="Trabalho de PPI- Imobiliaria">
+    <meta name="keywords" content="trabalho, programação, internet, imobiliaria">
+</head>
+<body>
+
+    <header  class="espacing-menu-section">
+        <div id="navbar"></div>
+    </header>
+
+    <div class="container-consulta">
+
+        <nav id="sidebar">
+            <div class="container fundo aside-fundo">
+                <button id="hideConsultar"  type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="float-right">&times;</span>
+                </button>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h5 class="float-left" style="text-align: left">Consultar Imóveis:</h5>
+                    </div>
+
+                </div>
+                <div class="row">
+
+                        <form action="" id='formSearch'>
+
+
+                                <div class="form-group col-sm-12">
+
+
+                                    <div class="row">
+                                        <label for="">Comprar ou Alugar</label>
+                                        <div class="form-check col-sm-6">
+                                            <input class="form-check-input" type="radio" name="tipoAnuncio" value="Alugar" checked>
+                                            <label class="form-check-label" for="alugar">
+                                                <span>Alugar</span>
+                                            </label>
+                                        </div>
+                                        <div class="form-check col-sm-6">
+                                            <input class="form-check-input" type="radio" name="tipoAnuncio" value="Venda">
+                                            <label class="form-check-label" for="comprar">
+                                                <span>Comprar</span>
+                                            </label>
+                                        </div>
+
+                                    </div>
+
+                                    <label for="imovel-cidade">Cidade:</label>
+                                    <select class="form-control" name='cidade'>
+                                        <option value="uberaba"></option><!--cidade-->
+                                    </select>
+
+
+                                    <label for="imovel-bairro">Bairro:</label>
+                                    <select class="form-control" name="bairro">
+                                        <option value="granada"></option><!--bairro-->
+                                    </select>
+
+                                    <span>Preço</span>
+                                    <fieldset class="container preco">
+                                        <div class="form-row ">
+
+                                            <label class="col-sm-5" for="imovel-valor-min">
+                                                <input class="form-control " type="text" name="valorMin" placeholder="R$ min"  style="width:5rem;" aria-describedby="inputGroup-sizing-sm">
+                                            </label>
+                                            <span class="col-sm-1">-</span>
+                                            <label class="col-sm-5" for="imovel-valor-max">
+                                                <input class="form-control" type="text" name="valorMax" placeholder="R$ max" style="width:5rem;" aria-describedby="inputGroup-sizing-sm">
+                                            </label>
+                                        </div>
+                                    </fieldset>
+
+                                    <label for="imovel-cd-imovel">Descrição:</label>
+                                    <input class="form-control" type="text" name='descricao'><!--Cd_imovel-->
+                                </div>
+
+                            <button type="submit" id='btnBuscar' class="btn btn-primary" onclick="listSearch()">Buscar</button>
+                        </form>
+
+                </div>
+            </div>
+        </nav>
+
+        <button id="sideCollapse" type="button" class="btn">
+            <i class="fas fa-align-left"></i>
+            <span>></span>
+        </button>
+
+        <div id="content" class="container invisivel">
+
+            
+        </div>
+    </div>
+
+
+    <div id="login_modal"></div>
+    <div id="informacao_modal"></div>
+    <div id="interesse_modal"></div>
+
+
+    <script src="src/js/main.js"></script>
+
+    <script src="src/js/NavBar.js"></script>
+    <script src="src/js/Login_modal.js"></script>
+    <script src="src/js/modal_imovel_interesse.js"></script>
+    <script src="src/js/modal_imovel_informacao.js"></script>
+
+    <script>
+        var navBar = new NavBar( document.getElementById('navbar') );
+        navBar.create();
+
+        var loginModal = new Login_modal(document.getElementById('login_modal'));
+        loginModal.create();
+
+        var interesseModal  = new Modal_imovel_interesse(document.getElementById('interesse_modal'));
+        interesseModal.create();
+
+        var informacaoModal  = new Modal_imovel_informacao(document.getElementById('informacao_modal'));
+        informacaoModal.create();
+
+        function listSearch()
+        {
+          $.ajax({
+            url:window.urlApi.imovel,
+            type:"GET",
+            dataType:"json",
+            data:$('#formSearch').serialize(),
+            success: function(result) {
+            	
+              let html = "";
+              window.imoveis=[];
+            	result.forEach((imovel, index) => {
+                
+                window.imoveis[imovel.id] = imovel;
+                
+                html +=`
+                <div class=" fundo section-fundo">
+                <div class="row">
+                    <div class="col-lg-2 resultado-consulta">
+                            <ul class="list-group" style="font-size:10px">
+                                <li class="list-group-item">Area: ${imovel.area}m²</li>
+                                <li class="list-group-item">Data Anuncio: ${imovel.dataAnuncio}</li>
+                                <li class="list-group-item">Bairro: ${imovel.Endereco.bairro}</li>
+                                <li class="list-group-item">Cidade: ${imovel.Endereco.cidade}</li>
+                                <li class="list-group-item">Valor: R$${imovel.valorImovel}</li>
+                            </ul>
+
+                    </div>
+                    <div class="col-lg-10 resultado-consulta">
+                            ${loadFotos(imovel)}
+                    </div>
+
+
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12 clearfix botoesBuscaImovel resultado-consulta">
+                        <span><button type="button" onclick="interesseModal.show();" class="btn btn-success">Tenho interesse</button></span>
+                        <span id="btn-detalhes" class="float-right"><button class="btn btn-info"  onclick="informacaoModal.show();">Mais Detalhes&nbsp;&nbsp;&nbsp;</button></span>
+                    </div>
+
+                </div>
+                </div>
+                
+                
+                `;
+              });              
+              $(".invisivel")[0].innerHTML = html;          	
+            }
+        });
+        
+      }
+  function loadFotos(imovel){
+    let html = '';
+    for(i=0;i<imovel.fotos.length;i++)
+    {
+      html += `<img class="col-sm-4 img-responsive img-thumbnail rounded float-left" src="${"http://"+imovel.fotos[i]}">`;
+
+    }
+    return html;  
+  }
+
+  $.ajax({
+        url:window.urlApi.imovel,
+        type:"GET",
+        dataType:"json",
+
+        success: function(result) {
+
+          let cidades = [];
+          let bairros = [];
+
+          
+        	
+        	let html;
+        	result.forEach(imovel => {
+        		if(!(cidades.find((cidade)=>cidade==imovel.Endereco.cidade))){
+              cidades.push(imovel.Endereco.cidade);
+            }
+
+        		if(!(bairros.find(bairro=>bairro==imovel.Endereco.bairro))){
+              bairros.push(imovel.Endereco.bairro);
+            }
+          })
+
+          htmo="";
+          cidades.forEach(cidade =>  {
+            html += `<option value=${cidade}>${cidade}</option>`;
+          }); 
+        	$( "[name='cidade']" ).empty();
+          $( "[name='cidade']" ).append( html );
+          
+
+          html="";
+          bairros.forEach(bairro =>{
+            html += `<option value=${bairro}>${bairro}</option>`;
+          });        
+          
+        	$( "[name='bairro']" ).empty();
+        	$( "[name='bairro']" ).append( html );
+        },
+
+        error: function(xhr, status, error){
+          console.log(xhr);
+          console.log(status);
+          console.log(error);
+        },
+
+      })
+    </script>
+
+</body>
+</html>

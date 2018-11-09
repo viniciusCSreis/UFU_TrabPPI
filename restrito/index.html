@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang='pt-br'>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <title>Imobiliaria</title>
+    <link rel="shortcut icon" href="../src/img/fiveicon.ico">
+
+    <!-- bootstrap -->
+    <link href="https://unpkg.com/ionicons@4.4.2/dist/css/ionicons.min.css" rel="stylesheet">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <!-- css -->
+    <script src="../src/js/global.js"></script>
+    <script src="../src/js/logout.js"></script>
+
+
+    <link rel="stylesheet" href="../src/css/restrito.css">
+
+    <meta name="author" content="Cáliton Marcos, Matheus Araujo, Vinicios Clemente">
+    <meta name="description" content="Trabalho de PPI- Imobiliaria">
+    <meta name="keywords" content="trabalho, programação, internet, imobiliaria">
+</head>
+<body>
+
+    <div id="navBar"></div>
+
+
+    <div class="container dashboard">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="card  carta" >
+                    <img class="card-img-top" src="../src/img/card-imovel.png"  alt="Card image cap">
+
+                    <div class="card-body">
+                        <h5 class="card-title">Imoveis</h5>
+                        <p class="card-text">Quantidade: 35 </p>
+                        <p class="card-text">Casa: 80 unds</p>
+                        <p class="card-text">Apartamento: 45 unds</p>
+                        <a href="listar_imoveis.html" class="btn btn-primary">Vá Imóveis</a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-lg-3">
+                <div class="card  carta" >
+                    <img class="card-img-top" src="../src/img/card-cliente.png"  alt="Card image cap">
+
+                    <div class="card-body">
+                        <h5 class="card-title">Clientes</h5>
+                        <p class="card-text">Quantidade: lorem epson</p>
+                        <p class="card-text">Informação: lorem epson</p>
+                        <p class="card-text">Informação: lorem epson</p>
+                        <a href="listar_clientes.html" class="btn btn-success">Vá Clientes</a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-lg-3">
+                <div class="card  carta" >
+                    <img class="card-img-top" src="../src/img/card-funcionario.png" alt="Card image cap">
+
+                    <div class="card-body">
+                        <h5 class="card-title">Funcionarios</h5>
+                        <p class="card-text">Quantidade: lorem epson</p>
+                        <p class="card-text">Informação: lorem epson</p>
+                        <p class="card-text">Informação: lorem epson</p>
+                        <a href="/listar_funcionario.html" class="btn btn-info">Vá Funcionarios</a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-lg-3">
+                <div class="card  carta" >
+                    <img class="card-img-top" src="../src/img/card-solicitacao.png" alt="Card image cap">
+
+                    <div class="card-body">
+                        <h5 class="card-title">Solicitações</h5>
+                        <p class="card-text">Quantidade: lorem epson</p>
+                        <p class="card-text">Informação: lorem epson</p>
+                        <p class="card-text">Informação: lorem epson</p>
+                        <a href="restrito/listar_solicitacoes.html" class="btn btn-warning">Vá Solicitações</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="../src/js/NavBarAcessoRestrito.js"></script>
+    <script>
+        NavBarAcessoRestrito.create(document.getElementById('navBar'));
+    </script>
+</body>
+</html>

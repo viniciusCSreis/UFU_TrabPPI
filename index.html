@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang='pt-br'>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+        <title>Imobiliaria</title>
+        <link rel="shortcut icon" href="src/img/fiveicon.ico">
+
+        <!-- bootstrap -->
+        <link href="https://unpkg.com/ionicons@4.4.2/dist/css/ionicons.min.css" rel="stylesheet">
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <!-- Popper JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+        <script src="src/js/main.js"></script>
+        <script src="src/js/global.js"></script>
+        <script src="src/js/login.js"></script>
+
+        <!-- css -->
+        <link rel="stylesheet" href="src/css/main.css">
+
+        <meta name="author" content="Cáliton Marcos, Matheus Araujo, Vinicios Clemente">
+        <meta name="description" content="Trabalho de PPI- Imobiliaria">
+        <meta name="keywords" content="trabalho, programação, internet, imobiliaria">
+        
+    </head>
+    <body id="inicio">
+
+        <header>
+            <div id="navbar"></div>
+        </header>
+
+        <div class="container-fluid color-1">
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 texto">
+                        <h1>Buscando<br> por Imóvel dos sonhos?</h1>
+
+                        <p> Esta procurando por casas, apartamentos ou cômodos
+                        dos seus SONHOS, porem sites convencionais são feios
+                        e complicado :(.</p>
+
+                        <p>Nós da MyHouseMyLife somos a solução para sua procura
+                        de forma prática e agradável.</p>
+                    </div>
+
+                    <div class="col-md-6">
+                        <img class='fig-texto-right' src="src/img/imagem-1.svg" alt="casa-dirigivel">
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="container-fluid color-2 " id="quemSomos">
+            <div class="container  ">
+                <div class="row">
+                    <div class="col-md-6 ">
+                        <img class='fig-texto-left img-fluid' src="src/img/imagem-2.svg" alt="quem-somos">
+                    </div>
+
+                    <div class="col-md-6 texto texto-fundo">
+                        <h1 ><span style="color: #FC9A00;">My</span><span style="color: #9D5EB5">House</span><br><span style="color: #FC9A00;">&nbsp&nbspMy</span><span style="color:#48c088;">Life</span><br></h1>
+                        <br>
+                        <p >
+                            &nbsp&nbsp&nbsp&nbspSomos uma empresa ficticia criada por causa de um trabalho de PPI-Programação para internet-
+                            cujo nosso papel é fazer a mediação entre os que querem anunciar seus imóveis com aqueles
+                            que buscam por um, com um sistema simples, elegante e de facil uso ;)
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="container-fluid color-3 ">
+            <div class="container  texto">
+                <h1 class="titulo-secao" >Nossa Missão</h1>
+                <div class="row ">
+
+                    <div class="col-md-6 " style="color:red">
+                        <p class="texto-fundo">Primeiramente tirar total no trabalho, e obviamente satisfazer as expectativas de nossos clientes
+                        com transparência, qualidade e ética em todas as nossas ações.</p>
+                    </div>
+
+                    <div class="col-md-6">
+                        <img class="fig-texto-right img-fluid"src="src/img/imagem-3.svg" alt="nossa missao">
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="container-fluid color-1 ">
+            <div class="container texto">
+                <h1  class="titulo-secao" >Nossos Valores</h1>
+                <div class="row">
+
+                    <div class="col-md-6 ">
+                        <img class="fig-texto-left img-fluid" src="src/img/imagem-4.svg" alt="nossos valores">
+                    </div>
+
+                    <div class="col-md-6">
+                        <p class="texto-fundo">Ética e princípios, Inovação e Pioneirismo, Efetividade e Competência.</p>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="container-fluid color-2 ">
+            <div class="container texto">
+                <h1 class="titulo-secao ">Nossa Visão</h1>
+                <div class="row">
+
+                    <div class="col-md-6 ">
+                        <p class="texto-fundo">Alcançar a excelência no segmento imobiliário e a consequente
+                            fidelização de nossos clientes.</p>
+                    </div>
+
+                    <div class="col-md-6">
+                        <img class="fig-texto-right img-fluid"src="src/img/imagem-5.svg" alt="nossa visao">
+                    </div>
+                    <a id="btn-rolar-para-cima" href="#inicio" class="btn btn-info btn-lg scrollSuave">Up</a>
+                </div>
+
+            </div>
+        </div>
+        <div id="login_modal"></div>
+
+
+
+        <!--<modais></modais>-->
+
+
+
+        <script src="src/js/NavBar.js"></script>
+        <script src="src/js/Login_modal.js"></script>
+        <script>
+            var navbar = new NavBar( document.getElementById('navbar') );
+            navbar.create();
+            var loginModal = new Login_modal(document.getElementById('login_modal'));
+            loginModal.create();
+        </script>
+
+        <footer class="footer">
+            <div class="container texto  ">
+                <div class="row">
+
+                    <div class="col-md-12 ">
+                        <p class="">© 2018 MyHouseMyLife.</p>
+                    </div>
+
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <p ></p>
+                    </div>
+                </div>
+
+            </div>
+        </footer>
+    </body>
+</html>
