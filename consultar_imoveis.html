@@ -113,7 +113,7 @@
 
         <div id="content" class="container invisivel">
 
-            
+
         </div>
     </div>
 
@@ -151,13 +151,13 @@
             dataType:"json",
             data:$('#formSearch').serialize(),
             success: function(result) {
-            	
+
               let html = "";
               window.imoveis=[];
             	result.forEach((imovel, index) => {
-                
+
                 window.imoveis[imovel.id] = imovel;
-                
+
                 html +=`
                 <div class=" fundo section-fundo">
                 <div class="row">
@@ -186,14 +186,14 @@
 
                 </div>
                 </div>
-                
-                
+
+
                 `;
-              });              
-              $(".invisivel")[0].innerHTML = html;          	
+              });
+              $(".invisivel")[0].innerHTML = html;
             }
         });
-        
+
       }
   function loadFotos(imovel){
     let html = '';
@@ -202,7 +202,7 @@
       html += `<img class="col-sm-4 img-responsive img-thumbnail rounded float-left" src="${"http://"+imovel.fotos[i]}">`;
 
     }
-    return html;  
+    return html;
   }
 
   $.ajax({
@@ -215,8 +215,8 @@
           let cidades = [];
           let bairros = [];
 
-          
-        	
+
+
         	let html;
         	result.forEach(imovel => {
         		if(!(cidades.find((cidade)=>cidade==imovel.Endereco.cidade))){
@@ -231,16 +231,16 @@
           htmo="";
           cidades.forEach(cidade =>  {
             html += `<option value=${cidade}>${cidade}</option>`;
-          }); 
+          });
         	$( "[name='cidade']" ).empty();
           $( "[name='cidade']" ).append( html );
-          
+
 
           html="";
           bairros.forEach(bairro =>{
             html += `<option value=${bairro}>${bairro}</option>`;
-          });        
-          
+          });
+
         	$( "[name='bairro']" ).empty();
         	$( "[name='bairro']" ).append( html );
         },
