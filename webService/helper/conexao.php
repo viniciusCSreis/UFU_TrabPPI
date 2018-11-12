@@ -1,19 +1,19 @@
 <?php
 // Conexao Online
-define("HOST", "localhost");
-define("USER", "ejtechmo_matheus");
-define("PASSWORD", "b].@XoCp,AZ*");
-define("DATABASE", "ejtechmo_trabalho_ppi");
-
-// Conexao Local
 // define("HOST", "localhost");
-// define("USER", "caliton");
-// define("PASSWORD", "batata+banana=3");
+// define("USER", "ejtechmo_matheus");
+// define("PASSWORD", "b].@XoCp,AZ*");
 // define("DATABASE", "ejtechmo_trabalho_ppi");
 
-// define("HOST", "localhost"); 
+//Conexao Local
+define("HOST", "localhost");
+define("USER", "caliton");
+define("PASSWORD", "batata+banana=3");
+define("DATABASE", "ejtechmo_trabalho_ppi");
+
+// define("HOST", "localhost");
 // define("USER", "vinicius");
-// define("PASSWORD", "password"); 
+// define("PASSWORD", "password");
 // define("DATABASE", "ejtechmo_trabalho_ppi");
 
 function createConn()

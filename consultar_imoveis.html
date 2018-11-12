@@ -45,6 +45,8 @@
                     </div>
 
                 </div>
+
+                <!-- Formulario de Busca -->
                 <div class="row">
 
                         <form action="" id='formSearch'>
@@ -103,6 +105,7 @@
                         </form>
 
                 </div>
+                <!-- /Formulario de Busca -->
             </div>
         </nav>
 
@@ -143,6 +146,7 @@
         var informacaoModal  = new Modal_imovel_informacao(document.getElementById('informacao_modal'));
         informacaoModal.create();
 
+        // Resultado da busca.
         function listSearch()
         {
           $.ajax({
@@ -172,7 +176,7 @@
 
                     </div>
                     <div class="col-lg-10 resultado-consulta">
-                            ${loadFotos(imovel)}
+                            ${loadFotosSample(imovel)}
                     </div>
 
 
@@ -181,7 +185,7 @@
                 <div class="row">
                     <div class="col-sm-12 clearfix botoesBuscaImovel resultado-consulta">
                         <span><button type="button" onclick="interesseModal.show();" class="btn btn-success">Tenho interesse</button></span>
-                        <span id="btn-detalhes" class="float-right"><button class="btn btn-info"  onclick="informacaoModal.show();">Mais Detalhes&nbsp;&nbsp;&nbsp;</button></span>
+                        <span id="btn-detalhes" class="float-right"><button class="btn btn-info"  onclick="openModalImovel('${imovel.id}');">Mais Detalhes&nbsp;&nbsp;&nbsp;</button></span>
                     </div>
 
                 </div>
@@ -195,8 +199,10 @@
         });
 
       }
-  function loadFotos(imovel){
+  function loadFotosAll(imovel){
     let html = '';
+
+    // Fotos totais caso usuario deseje ver mais detalhes do imovel.
     for(i=0;i<imovel.fotos.length;i++)
     {
       html += `<img class="col-sm-4 img-responsive img-thumbnail rounded float-left" src="${"http://"+imovel.fotos[i]}">`;
@@ -205,6 +211,39 @@
     return html;
   }
 
+  function loadFotosSample(imovel){
+    let html = '';
+
+    // Segundo o requisito deve aparecer no resultado da busca informações + 3 fotos.
+    for(i = 0; i < 3; i ++)
+    {
+      html += `<img class="col-sm-4 img-responsive img-thumbnail rounded float-left" src="${"http://"+imovel.fotos[i]}">`;
+
+    }
+
+    return html;
+  }
+
+  function openModalImovel(id){
+      // $("#galeriaImagens")[0].inner = window.imovel[id].fotos;
+      $("#inf-area")[0].inner = window.imovel[id].area;
+      $("#inf-dtAnuncio")[0].inner = window.imovel[id].dataConstrucao;
+
+      $("#inf-bairro")[0].inner = window.imovel[id].Endereco.bairro;
+      $("#inf-cidade")[0].inner = window.imovel[id].Endereco.cidade;
+      $("#inf-valor")[0].inner = window.imovel[id].valorImovel;
+      $("#inf-nro")[0].inner = window.imovel[id].Endereco.numero;
+
+      $("#inf-nroSalaEstar")[0].inner = window.imovel[id].qtdSalaEstar;
+      $("#inf-nroSalaJantar")[0].inner = window.imovel[id].qtdSalaJantar;
+      $("#inf-nroQuarto")[0].inner = window.imovel[id].qtdQuartos;
+      $("#inf-suite")[0].inner = window.imovel[id].qtdSuites;
+      $("#inf-garagem")[0].inner = window.imovel[id].qtdVagasGaragem;
+      $("#inf-armario")[0].inner = window.imovel[id].armarioEmbutido;
+      $("#inf-descricao")[0].inner = window.imovel[id].descricao;
+
+       $('#informacaoModal').modal("show");
+  }
   $.ajax({
         url:window.urlApi.imovel,
         type:"GET",
