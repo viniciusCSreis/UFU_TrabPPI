@@ -2,7 +2,7 @@ version: '3'
 services:
   mysqlDb:
     environment:
-     - MYSQL_ROOT_PASSWORD=password
+     - MYSQL_ALLOW_EMPTY_PASSWORD=yes
      - MYSQL_DATABASE=ejtechmo_trabalho_ppi
      - MYSQL_USER=vinicius
      - MYSQL_PASSWORD=password
@@ -29,9 +29,8 @@ services:
     build:
       context: .
       dockerfile: php.dockerfile
-    image: testephp
-    command: service apache2 start
-    command: tail -f /var/log/apache2/error.log
+    image: trab_ppi/php_apache
+    command: bash -c "service apache2 start && tail -f /var/log/apache2/error.log"
     volumes:
       - ../public:/var/www/html
     ports:
@@ -39,6 +38,8 @@ services:
     networks:
       trabPPI:
           ipv4_address: 192.168.70.4
+    depends_on:
+      - "mysqlDb"
   
 networks:
   trabPPI:

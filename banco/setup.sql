@@ -356,3 +356,24 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+insert into `Funcionario`
+(
+  `id_cargo`
+  ,`cpf_funcionario`
+  ,`data_ing`
+  ,`senha`
+  ,`usuario`
+  ,`telefone`
+  ,`celular`
+)
+VALUES
+(
+  1,
+  1,
+  '2008-7-04'
+  ,'5d68217d0c3ddfc029f1f8f2e61a80a8256342f27893ff0fe55da861e75325d6f7c805a26cae587f01aee7980700e8f06422c233a0e2a8e9bf26aad0c39e00c6Login'
+  ,'teste@ufu.br'
+  ,'1'
+  ,'1'
+);
