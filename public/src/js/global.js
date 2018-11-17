@@ -1,7 +1,4 @@
-// let urlBase = "http://mylifemyhouse.ejtechmob.com.br/webService/api";
-// let urlBase = "http://localhost:3000/webService/api";
-// let urlBase = "http://localhost/trabalho_ppi/webService/api";
-let urlBase = "http://192.168.70.4/webService/api";
+let urlBase = window.location.origin+"/webService/api";
 window.urlApi= {
   login: urlBase+"/login.php",
   logout: urlBase+"/logout.php",
@@ -15,5 +12,3 @@ window.urlApi= {
 window.urlRestrito="restrito";
 window.urlIndex="";
 
-// window.urlRestrito="trabalho_ppi/restrito";
-// window.urlIndex="trabalho_ppi/";
