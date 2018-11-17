@@ -1,5 +1,5 @@
 <?php
-  
+  error_reporting(E_ERROR | E_PARSE);
   require('../helper/filter.php');
   require_once('../helper/conexao.php');
   session_start();
@@ -11,6 +11,7 @@
 
   function loginFuncionario($email, $senha, $mysqli)
   {
+
     $SQL = "
       SELECT  usuario, senha  
       FROM Funcionario
@@ -22,11 +23,13 @@
     $stmt->bind_param('s', $email);
     $stmt->execute();
     $stmt->store_result();
+
+
     
     // Resgata o resultado nas variáveis
     $stmt->bind_result($nomeUsuario,$senhaHash);
     $stmt->fetch();
-    
+
     if ($stmt->num_rows == 1)
     {   /*password_verify($senha, $senhaHash)*/
       if(hash('sha512',$senha) == $senhaHash)
@@ -62,7 +65,7 @@
       {   
                  
           $_SESSION["login_authorized"] = true;
-          print"<script>alert('Login realizado com sucesso!');</script>";
+          echo "Login realizado com sucesso!";
                   
           
       }
@@ -70,7 +73,7 @@
       {
          
           http_response_code(403);
-          print"<script>alert(Login não realizado);</script>";
+          echo "Login não realizado";
           
       }
 
@@ -82,11 +85,11 @@
 
       if ($msgErro == "")
       {
-        print"<script>alert('Sem erro no script!');</script>";
+        echo "Sem erro no script!";
           
       }    
       else
-      print"<script>alert('Login não realizado: $msgErro');</script>";
+      echo "Login não realizado: $msgErro";
   }
   
  

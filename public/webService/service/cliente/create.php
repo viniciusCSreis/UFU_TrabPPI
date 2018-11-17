@@ -4,6 +4,8 @@ if (! loginAuthorized()) {
     return;
 }
 
+
+
 require (dirname(__FILE__) . "/../../helper/filter.php");
 require (dirname(__FILE__) . "/../../dao/cliente.php");
 require (dirname(__FILE__) . "/../../model/cliente.php");

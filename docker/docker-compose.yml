@@ -28,10 +28,10 @@ services:
   phpApache:
     build:
       context: .
-      dockerfile: ./php.dockerfile
-    image: viniciuscsreis/php_trab_ppi
-    command: service apache2 start 
-    command: tail -f /var/log/apache2/error.log 
+      dockerfile: php.dockerfile
+    image: testephp
+    command: service apache2 start
+    command: tail -f /var/log/apache2/error.log
     volumes:
       - ../public:/var/www/html
     ports:
