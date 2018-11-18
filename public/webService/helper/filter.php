@@ -18,4 +18,23 @@
         return $data;
     }
 
+    function loadClass($class,$data,$ignoreArray){
+
+        $data = filterArray($data);
+        foreach (get_object_vars($class) as $key => $value)
+        {
+            if (in_array ( $key , $ignoreArray))
+            {
+                continue;
+            }
+            if(!isset($data[$key]) || $data[$key] == ""){
+                http_response_code(400);
+                exit("$key not send");
+            }
+            $class->$key = $data[$key];
+        }
+        return $class;
+
+    }
+
 ?>

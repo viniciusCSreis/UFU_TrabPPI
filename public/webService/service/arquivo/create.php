@@ -11,7 +11,7 @@ if (isset($_FILES['fileUpload']) && $_FILES['fileUpload'] != '') {
     $dir = '/uploads/'; // Diretório para uploads
     move_uploaded_file($_FILES['fileUpload']['tmp_name'], dirname(__FILE__) .$dir . $new_name); // Fazer upload do arquivo
     http_response_code(201);
-    echo "mylifemyhouse.ejtechmob.com.br"."/webService/service/arquivo" .$dir . $new_name;
+    echo $_SERVER["SERVER_NAME"]."/webService/service/arquivo" .$dir . $new_name;
     
 }else{
     http_response_code(400);

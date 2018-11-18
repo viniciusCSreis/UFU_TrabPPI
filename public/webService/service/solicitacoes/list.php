@@ -4,11 +4,8 @@ if (! loginAuthorized()) {
 return;
 }
 
-require (dirname(__FILE__) . "/../../model/imovel.php");
-require (dirname(__FILE__) . "/../../model/cliente.php");
-require (dirname(__FILE__) . "/../../model/endereco.php");
-require (dirname(__FILE__) . "/../../model/solicitacao.php");
-require (dirname(__FILE__) . "/../../helper/conexao.php");
+require_once (dirname(__FILE__) . "/../../model/solicitacao.php");
+require_once (dirname(__FILE__) . "/../../helper/conexao.php");
 
 
 $solicitacoes = array();

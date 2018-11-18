@@ -41,13 +41,16 @@ CREATE TABLE IF NOT EXISTS `Anunciar` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 CREATE TABLE IF NOT EXISTS `SolicitacaoApi` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(256) NOT NULL ,
   `email` varchar(256) NOT NULL,
   `telefoneResidencial` varchar(256) NOT NULL,
   `telefoneCelular` varchar(256) NOT NULL,
   `proposta` varchar(1024) NOT NULL,
-  PRIMARY KEY (`id`)
+  `id_imovel` int(11) NOT NULL,
+  `data` date NOT NULL,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`id_imovel`) REFERENCES `Imovel`(`id_imovel` )
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -99,7 +102,7 @@ CREATE TABLE IF NOT EXISTS `Cadastrar_Clientes` (
 --
 
 CREATE TABLE IF NOT EXISTS `Cargo` (
-  `id_cargo` int(11) NOT NULL,
+  `id_cargo` int(11) NOT NULL AUTO_INCREMENT,
   `salario_base` double NOT NULL,
   PRIMARY KEY (`id_cargo`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -163,7 +166,7 @@ CREATE TABLE IF NOT EXISTS `Corretor` (
 CREATE TABLE IF NOT EXISTS `Forma_Pagamento` (
   `cpf_gerente` char(14) NOT NULL,
   `cpf_corretor` char(14) DEFAULT NULL,
-  `id_FP` int(11) NOT NULL,
+  `id_FP` int(11) NOT NULL AUTO_INCREMENT,
   `descricao` varchar(200) DEFAULT NULL,
   `data_cadastro` date NOT NULL,
   PRIMARY KEY (`id_FP`),
@@ -231,7 +234,7 @@ CREATE TABLE IF NOT EXISTS `Imovel` (
   `disponibilidade` tinyint(1) DEFAULT NULL,
   `data_construcao` date DEFAULT NULL,
   `area` float DEFAULT NULL,
-  `id_imovel` int(11) NOT NULL,
+  `id_imovel` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id_imovel`),
   KEY `cpf_cliente_usuario` (`cpf_cliente_usuario`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -357,23 +360,4 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 
-insert into `Funcionario`
-(
-  `id_cargo`
-  ,`cpf_funcionario`
-  ,`data_ing`
-  ,`senha`
-  ,`usuario`
-  ,`telefone`
-  ,`celular`
-)
-VALUES
-(
-  1,
-  1,
-  '2008-7-04'
-  ,'5d68217d0c3ddfc029f1f8f2e61a80a8256342f27893ff0fe55da861e75325d6f7c805a26cae587f01aee7980700e8f06422c233a0e2a8e9bf26aad0c39e00c6Login'
-  ,'teste@ufu.br'
-  ,'1'
-  ,'1'
-);
+
