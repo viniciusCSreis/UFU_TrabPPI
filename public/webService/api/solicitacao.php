@@ -12,5 +12,10 @@ if ($method == "POST")
 {
     require '../service/solicitacoes/create.php';
 }
+if ($method == "DELETE")
+{
+    require '../service/solicitacoes/delete.php';
+}
+
 
 ?>

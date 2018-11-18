@@ -12,7 +12,7 @@ require_once (dirname(__FILE__) . "/../../helper/filter.php");
 
 
 $solicitacao = new Solicitacao();
-$solicitacao = loadClass($solicitacao,$_POST,["id"]);
+$solicitacao = loadClass($solicitacao,$_POST,["id","data"]);
 $solicitacao = saveSolicitacao($solicitacao);
 
 if($solicitacao->id !== 0){

@@ -6,6 +6,7 @@ require_once (dirname(__FILE__) . "/sql.php");
 
 function saveSolicitacao($solicitacao)
 {
+    $date = date('Y-m-d');
     $sql[0] = "
         INSERT INTO `SolicitacaoApi` 
         (
@@ -33,11 +34,20 @@ function saveSolicitacao($solicitacao)
             $solicitacao->telefoneC,
             $solicitacao->proposta,
             $solicitacao->idImovel,
-            $solicitacao->data
+            $date
+
         ];
 
     $solicitacao->id = save($sql,$bindParam);
+    $solicitacao->data = $date;
     return $solicitacao;
+}
+
+function deleteSolicitacao($id)
+{
+    $sql[0] = "DELETE FROM `SolicitacaoApi` WHERE id = ?";
+    $bindParam[0] =["i",$id];
+    save($sql,$bindParam);
 }
 
 

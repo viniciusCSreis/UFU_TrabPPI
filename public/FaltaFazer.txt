@@ -12,4 +12,4 @@ Imoveis:
 
 Solicitações:
   Front:Criar,Listar, Deletar, Editar
-  Back: Criar,Listar, Deletar, Editar
+  Back: Deletar, Editar

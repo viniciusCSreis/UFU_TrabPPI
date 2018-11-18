@@ -133,7 +133,7 @@ function insertIntoFotos_Imovel($conn,$fotos,$id){
             (
                 id_imovel,
                 fotos
-            )VALUES(?, ?)";    
+            )VALUES(?, ?)";
     
     if(!$stmt = $conn->prepare($sql)){
         echo $conn->error;

@@ -35,12 +35,12 @@ $stmp->bind_result($estado, $cidade, $bairro, $rua);
 $stmp->fetch();
 
 $endereco = new Endereco();
-$endereco->estado = $estado;
-$endereco->cidade = $cidade;
-$endereco->bairro = $bairro;
-$endereco->rua = $rua;
+$endereco->estado = utf8_encode($estado);
+$endereco->cidade = utf8_encode($cidade);
+$endereco->bairro = utf8_encode($bairro);
+$endereco->rua = utf8_encode($rua);
 
-
+//var_dump($endereco);
 
 $json = json_encode($endereco);
 if(!$json){

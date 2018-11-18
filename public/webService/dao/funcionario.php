@@ -17,7 +17,7 @@ function funcionarioSave($funcionario)
         if (! $stmt->execute()) {
             throw new RuntimeException($stmt->error);
         }
-        // TODO esta dando problema ao inserir nesta tabela
+
         $funcionario->senha = hash('sha512',$funcionario->senha);
         $stmt = $conn->prepare("INSERT INTO Funcionario(id_cargo, cpf_funcionario, data_ing, senha, usuario, telefone, celular)
         VALUES (?, ?, ?, ?, ?, ?, ?)");
@@ -135,7 +135,6 @@ function funcionarioDelete($cpf)
     }
 }
 
-// TODO acrescentar os novos campos de Telefone e Celular.
 function funcionarioUpdate($funcionario){
     $conn = createConn();
     if ($conn == null) {
@@ -171,15 +170,3 @@ function funcionarioUpdate($funcionario){
         return false;
     }
 }
-//
-// "RuntimeException: Pessoa ja tem esse Funcionario in /home/caliton/Documentos/Imobiliaria/trabalho_ppi/webService/dao/funcionario.php:31
-// Stack trace:
-// #0 /home/caliton/Documentos/Imobiliaria/trabalho_ppi/webService/service/funcionario/create.php(92): funcionarioSave(Object(Funcionario))
-// #1 /home/caliton/Documentos/Imobiliaria/trabalho_ppi/webService/api/funcionario.php(5): require('/home/caliton/D...')
-// #2 {main}"
-//
-// "RuntimeException: Duplicate entry '098' for key 'PRIMARY' in /home/caliton/Documentos/Imobiliaria/trabalho_ppi/webService/dao/funcionario.php:18
-// Stack trace:
-// #0 /home/caliton/Documentos/Imobiliaria/trabalho_ppi/webService/service/funcionario/create.php(92): funcionarioSave(Object(Funcionario))
-// #1 /home/caliton/Documentos/Imobiliaria/trabalho_ppi/webService/api/funcionario.php(5): require('/home/caliton/D...')
-// #2 {main}"
