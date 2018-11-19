@@ -33,6 +33,9 @@ if ($resultado->num_rows > 0)
   }
   echo json_encode($solicitacoes);
 }
+else{
+    echo "[]";
+}
 
 
 

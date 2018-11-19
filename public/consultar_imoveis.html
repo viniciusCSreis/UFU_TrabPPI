@@ -180,7 +180,7 @@
 
                 <div class="row">
                     <div class="col-sm-12 clearfix botoesBuscaImovel resultado-consulta">
-                        <span><button type="button" onclick="interesseModal.show();" class="btn btn-success">Tenho interesse</button></span>
+                        <span><button type="button" onclick="openModalInteresse('${imovel.id}')" class="btn btn-success">Tenho interesse</button></span>
                         <span id="btn-detalhes" class="float-right"><button class="btn btn-info"  onclick="informacaoModal.show();">Mais Detalhes&nbsp;&nbsp;&nbsp;</button></span>
                     </div>
 
@@ -251,7 +251,55 @@
           console.log(error);
         },
 
-      })
+      });
+
+        function openModalInteresse(id) {
+            document.getElementsByName("idImovel").value=id;
+            document.getElementById("infoModalInteresse").style.display="none";
+            $('#interesseModal').modal('show');
+
+        }
+    function sendInteresse() {
+
+        $.ajax({
+            url: window.urlApi.solicitacao,
+            type: "POST",
+            dataType: "json",
+            data: $("#interesseForm").serialize()+document.getElementsByName("idImovel").value,
+
+            success: function (result) {
+                console.log(result);
+                document.getElementById("interesseForm").reset();
+                document.getElementById("infoModalInteresse").style.display="block";
+                document.getElementById("infoModalInteresse").className="alert alert-success";
+                document.getElementById("infoModalInteresse").innerText="Solicitação enviado com sucesso";
+
+            },
+
+            error: function (xhr, status, error) {
+                console.log(xhr);
+                console.log(status);
+                console.log(error);
+                if(xhr.status==400)
+                {
+                    document.getElementById("infoModalInteresse").style.display="block";
+                    document.getElementById("infoModalInteresse").className="alert alert-warning";
+                    document.getElementById("infoModalInteresse").innerText="por favor, preencha todos os campos ";
+                }
+                else{
+                    document.getElementById("infoModalInteresse").style.display="block";
+                    document.getElementById("infoModalInteresse").className="alert alert-danger";
+                    document.getElementById("infoModalInteresse").innerText="Error ao enviar solicitação";
+                }
+            },
+
+        })
+
+
+
+    }
+
+
     </script>
 
 </body>
