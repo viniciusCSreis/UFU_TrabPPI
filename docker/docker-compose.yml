@@ -1,0 +1,50 @@
+version: '3'
+services:
+  mysqlDb:
+    environment:
+     - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+     - MYSQL_DATABASE=ejtechmo_trabalho_ppi
+     - MYSQL_USER=vinicius
+     - MYSQL_PASSWORD=password
+    image: mysql:5.6.41
+    ports:
+      - "33066:3306"
+    networks:
+      trabPPI:
+          ipv4_address: 192.168.70.2
+  
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:4.8
+    ports:
+      - "8081:80"
+    networks:
+      trabPPI:
+          ipv4_address: 192.168.70.3
+    environment:
+      - PMA_HOST=192.168.70.2
+    depends_on:
+      - "mysqlDb"
+  
+  phpApache:
+    build:
+      context: .
+      dockerfile: php.dockerfile
+    image: trab_ppi/php_apache
+    command: bash -c "service apache2 start && tail -f /var/log/apache2/error.log"
+    volumes:
+      - ../public:/var/www/html
+    ports:
+      - "8080:80"
+    networks:
+      trabPPI:
+          ipv4_address: 192.168.70.4
+    depends_on:
+      - "mysqlDb"
+  
+networks:
+  trabPPI:
+    driver: bridge
+    ipam:
+     config:
+       - subnet: 192.168.70.0/24
+  
