@@ -40,18 +40,6 @@ CREATE TABLE IF NOT EXISTS `Anunciar` (
   KEY `cpf_cliente_proprietario` (`cpf_cliente_proprietario`)
 ) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 
-CREATE TABLE IF NOT EXISTS `SolicitacaoApi` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nome` varchar(256) NOT NULL ,
-  `email` varchar(256) NOT NULL,
-  `telefoneResidencial` varchar(256) NOT NULL,
-  `telefoneCelular` varchar(256) NOT NULL,
-  `proposta` varchar(1024) NOT NULL,
-  `id_imovel` int(11) NOT NULL,
-  `data` date NOT NULL,
-  PRIMARY KEY (`id`),
-  CONSTRAINT `id_imovel` FOREIGN KEY (`id_imovel`) REFERENCES `Imovel` (`id_imovel`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -238,6 +226,19 @@ CREATE TABLE IF NOT EXISTS `Imovel` (
   `id_imovel` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id_imovel`),
   KEY `cpf_cliente_usuario` (`cpf_cliente_usuario`)
+) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+
+CREATE TABLE IF NOT EXISTS `SolicitacaoApi` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(256) NOT NULL ,
+  `email` varchar(256) NOT NULL,
+  `telefoneResidencial` varchar(256) NOT NULL,
+  `telefoneCelular` varchar(256) NOT NULL,
+  `proposta` varchar(1024) NOT NULL,
+  `id_imovel` int(11) NOT NULL,
+  `data` date NOT NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `id_imovel` FOREIGN KEY (`id_imovel`) REFERENCES `Imovel` (`id_imovel`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 
 -- --------------------------------------------------------

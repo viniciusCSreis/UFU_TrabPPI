@@ -50,14 +50,15 @@ class Login_modal
                                 <!--<a href="#" data-toggle="modal" data-target="#cadastroModal">Novo Cadastro</a>-->
                             </div>
 
-                        </form>
+                        
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
                          
-                        <button type="button" onclick="submitLogin()" class="btn btn-primary"> Entrar </button>
+                        <button type="submit" onclick="submitLogin()" class="btn btn-primary"> Entrar </button>
                           
                     </div>
+                    </form>
 
                 </div>
             </div>
