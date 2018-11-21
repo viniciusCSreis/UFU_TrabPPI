@@ -1,4 +1,4 @@
-class Login_modal 
+class Login_modal
 {
     constructor(elemento)
     {
@@ -53,10 +53,11 @@ class Login_modal
                         </form>
                     </div>
                     <div class="modal-footer">
+                        <div id="mensagemErro" style="display:none; color: red;">Login invalido</div>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                         
+
                         <button type="button" onclick="submitLogin()" class="btn btn-primary"> Entrar </button>
-                          
+
                     </div>
 
                 </div>

@@ -57,8 +57,48 @@ function createFormArquivo(index){
 function createCarouselFotos(index){
   return `
 <div id=${"galeriaImagens"+index} class="carousel slide" data-ride="carousel">
-    <img class="d-block w-50" id=${'foto1_'+index} src="../src/img/imagem-1.svg" alt="First slide">
+  <ol class="carousel-indicators">
+      <li data-target=${"#galeriaImagens"+index} data-slide-to="0" class="active"></li>
+      <li data-target=${"#galeriaImagens"+index} data-slide-to="1"></li>
+      <li data-target=${"#galeriaImagens"+index} data-slide-to="2"></li>
+      <li data-target=${"#galeriaImagens"+index} data-slide-to="3"></li>
+      <li data-target=${"#galeriaImagens"+index} data-slide-to="4"></li>
+      <li data-target=${"#galeriaImagens"+index} data-slide-to="5"></li>
 
+  </ol>
+  <div class="carousel-inner">
+      <div class="carousel-item active">
+          <img class="d-block w-50" id=${'foto1_'+index} src="../src/img/imagem-1.svg" alt="First slide">
+      </div>
+
+      <div class="carousel-item">
+          <img class="d-block w-50" id=${'foto2_'+index} src="../src/img/imagem-2.svg" alt="Second slide">
+      </div>
+
+      <div class="carousel-item">
+          <img class="d-block w-50" id=${'foto3_'+index} src="../src/img/imagem-3.svg" alt="Third slide">
+      </div>
+
+      <div class="carousel-item">
+          <img class="d-block w-50" id=${'foto4_'+index} src="../src/img/imagem-4.svg" alt="Third slide">
+      </div>
+
+      <div class="carousel-item">
+          <img class="d-block w-50" id=${'foto5_'+index} src="../src/img/imagem-5.svg" alt="Third slide">
+      </div>
+
+      <div class="carousel-item">
+          <img class="d-block w-50" id=${'foto6_'+index} src="../src/img/imagem-3.svg" alt="Third slide">
+      </div>
+  </div>
+  <a class="carousel-control-prev" href=${"#galeriaImagens"+index} role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href=${"#galeriaImagens"+index} role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+  </a>
 </div>
   `;
 }
@@ -351,7 +391,6 @@ function openModalById(id,index){
 	$('#cadastrar_imovel_qtd_quartos'+index)[0].value=window.imoveis[id].qtdQuartos;
 	$('#valor'+index)[0].value=window.imoveis[id].valorImovel;
   $('#cadastrar_imovel_descricao'+index)[0].value=window.imoveis[id].descricao;
-
   for(i=0;i<window.imoveis[id].fotos.length;i++)
   {
     document.getElementById('foto'+(i+1)+'_'+index).src="http://"+window.imoveis[id].fotos[i];

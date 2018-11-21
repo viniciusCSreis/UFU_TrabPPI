@@ -199,16 +199,17 @@
         });
 
       }
-  function loadFotosAll(imovel){
-    let html = '';
+  var barraLoadIdMoveis = 0;
+  function loadFotosAllModal(imovel){
 
     // Fotos totais caso usuario deseje ver mais detalhes do imovel.
-    for(i=0;i<imovel.fotos.length;i++)
+    for(i=0; i<imovel.fotos.length ;i++)
     {
-      html += `<img class="col-sm-4 img-responsive img-thumbnail rounded float-left" src="${"http://"+imovel.fotos[i]}">`;
+        console.log("http://"+ imovel.fotos[i]);
+      $("#indexGaleriaImagensCarrousel")[0].innerHTML += `<li data-target="#galeriaImagemCarrousel" data-slide-to="${i}" class=" ${i != 0? '': 'active'}"></li>`;
 
+      $("#enderecoImagensCarrousel")[0].innerHTML += `<div class="carousel-item ${i != 0? '': 'active'}"> <img class="d-block w-100" src="${"http://"+ imovel.fotos[i]}" ></div>`;
     }
-    return html;
   }
 
   function loadFotosSample(imovel){
@@ -225,22 +226,27 @@
   }
 
   function openModalImovel(id){
+
+      if(barraLoadIdMoveis != id){
+          loadFotosAllModal(window.imoveis[id]);
+      }
+      barraLoadIdMoveis = id;
       // $("#galeriaImagens")[0].inner = window.imovel[id].fotos;
-      $("#inf-area")[0].inner = window.imovel[id].area;
-      $("#inf-dtAnuncio")[0].inner = window.imovel[id].dataConstrucao;
+      $("#inf-area")[0].innerHTML = window.imoveis[id].area;
+      $("#inf-dtAnuncio")[0].innerHTML = window.imoveis[id].dataConstrucao;
 
-      $("#inf-bairro")[0].inner = window.imovel[id].Endereco.bairro;
-      $("#inf-cidade")[0].inner = window.imovel[id].Endereco.cidade;
-      $("#inf-valor")[0].inner = window.imovel[id].valorImovel;
-      $("#inf-nro")[0].inner = window.imovel[id].Endereco.numero;
+      $("#inf-bairro")[0].innerHTML = window.imoveis[id].Endereco.bairro;
+      $("#inf-cidade")[0].innerHTML = window.imoveis[id].Endereco.cidade;
+      $("#inf-valor")[0].innerHTML = window.imoveis[id].valorImovel;
+      $("#inf-nro")[0].innerHTML = window.imoveis[id].Endereco.numero;
 
-      $("#inf-nroSalaEstar")[0].inner = window.imovel[id].qtdSalaEstar;
-      $("#inf-nroSalaJantar")[0].inner = window.imovel[id].qtdSalaJantar;
-      $("#inf-nroQuarto")[0].inner = window.imovel[id].qtdQuartos;
-      $("#inf-suite")[0].inner = window.imovel[id].qtdSuites;
-      $("#inf-garagem")[0].inner = window.imovel[id].qtdVagasGaragem;
-      $("#inf-armario")[0].inner = window.imovel[id].armarioEmbutido;
-      $("#inf-descricao")[0].inner = window.imovel[id].descricao;
+      $("#inf-nroSalaEstar")[0].innerHTML = window.imoveis[id].qtdSalaEstar;
+      $("#inf-nroSalaJantar")[0].innerHTML = window.imoveis[id].qtdSalaJantar;
+      $("#inf-nroQuarto")[0].innerHTML = window.imoveis[id].qtdQuartos;
+      $("#inf-suite")[0].innerHTML = window.imoveis[id].qtdSuites;
+      $("#inf-garagem")[0].innerHTML = window.imoveis[id].qtdVagasGaragem;
+      $("#inf-armario")[0].innerHTML = window.imoveis[id].armarioEmbutido;
+      $("#inf-descricao")[0].innerHTML = window.imoveis[id].descricao;
 
        $('#informacaoModal').modal("show");
   }

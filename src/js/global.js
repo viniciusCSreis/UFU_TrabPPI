@@ -1,6 +1,6 @@
 let urlBase = "http://mylifemyhouse.ejtechmob.com.br/webService/api";
 // let urlBase = "http://localhost:3000/webService/api";
-// let urlBase = "http://localhost/trabalho_ppi/webService/api";
+//let urlBase = "http://localhost/trabalho_ppi/webService/api";
 
 window.urlApi= {
   login: urlBase+"/login.php",
