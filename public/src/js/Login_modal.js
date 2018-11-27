@@ -10,6 +10,7 @@ class Login_modal
     }
     show()
     {
+        $("#mensagemErro").hide();
         $('#loginModal').modal('show');
     }
     create_modal_login()
@@ -53,6 +54,7 @@ class Login_modal
                         
                     </div>
                     <div class="modal-footer">
+                        <div id="mensagemErro" style="display:none; color: red;">Login invalido</div>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
                          
                         <button type="submit" onclick="submitLogin()" class="btn btn-primary"> Entrar </button>
