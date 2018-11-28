@@ -7,7 +7,7 @@ function loadCep(cep){
       data:"cep="+cep,
 
       success: function(result) {
-        
+
         let inputCidades;
         inputCidades = $('[name=cidade]');
         for(i=0;i<inputCidades.length;i++)inputCidades[i].value = result.cidade;
@@ -50,26 +50,26 @@ class FormEndereco {
     {
         this._elemento.innerHTML= `
 
-      <form method="get" action=".">  
+      <form method="get" action=".">
         <div class="form-row">
             <div class="form-group col-md-2">
                 <label for="cep">CEP</label>
-                <input type="text" onkeyup='loadCep(this.value)' class="form-control form-control-sm ${this._classname} cep" placeholder="00000-000" name="cep" >
+                <input id="inputCep" type="text" onkeyup='loadCep(this.value)' class="form-control form-control-sm ${this._classname} cep" placeholder="00000-000" name="cep" >
             </div>
 
             <div class="form-group col-md-6">
                 <label for="cidade">Cidade</label>
-                <input type="text" class="form-control form-control-sm ${this._classname} cidade" name="cidade" >
+                <input id="inputCidade" type="text" class="form-control form-control-sm ${this._classname} cidade" name="cidade" >
             </div>
             <div class="form-group col-md-4">
                 <label for="uf">Estado</label>
-                <input type="text" class="form-control form-control-sm ${this._classname} uf" name="uf" >              
+                <input id="inputEstado" type="text" class="form-control form-control-sm ${this._classname} uf" name="uf" >
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="rua">Rua</label>
-                <input type="text" class="form-control form-control-sm ${this._classname} rua" name="rua" placeholder="Rua">
+                <input id="inputRua" type="text" class="form-control form-control-sm ${this._classname} rua" name="rua" placeholder="Rua">
             </div>
             <div class="form-group col-md-2" >
                 <label for="numero">Número</label>
@@ -77,11 +77,10 @@ class FormEndereco {
             </div>
             <div class="form-group col-md-4 ">
                 <label for="bairro">Bairro</label>
-                <input type="text" class="form-control form-control-sm ${this._classname} bairro" name="bairro" placeholder="bairro">
+                <input id="inputBairro"type="text" class="form-control form-control-sm ${this._classname} bairro" name="bairro" placeholder="bairro">
             </div>
         </div>
     </form>
         `
     }
 }
- 

@@ -67,7 +67,7 @@
 
     </div>
 
-    
+
     <div id="modal_cadastrar_imovel1"></div>
     <div id="modal_cadastrar_imovel2"></div>
 
@@ -85,16 +85,16 @@
 
         var formEndereco2 = new FormEndereco(document.getElementById('formEndereco2'));
         formEndereco2.create();
-        
+
         window.imoveis={};
-        
+
         $.ajax({
             url:window.urlApi.imovel,
             type:"GET",
             dataType:"json",
 
             success: function(result) {
-            	
+
             	let html = "";
             	result.forEach((imovel, index) => {
             		window.imoveis[imovel.id] = imovel;
@@ -110,11 +110,11 @@
             			<td>
                         	<button class=" btn btn-danger btn-sm" onClick="excluirImovel('${imovel.id}')"><ion-icon style="vertical-align: middle;"  name="trash"></ion-icon></button>
                     	</td>`;
-            		
+
             		html+="</tr>";
             	})
-            	
-            	
+
+
               $("tbody")[0].innerHTML = html;
             },
 
@@ -173,11 +173,13 @@
 
             e.preventDefault();
 
-            
+
 
         });
-        
+
 
     </script>
+
+    		<script src="../src/js/buscaCEP.js"></script>
 </body>
 </html>

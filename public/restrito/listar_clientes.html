@@ -184,14 +184,14 @@
         let ajax = new XMLHttpRequest();
         var test;
         ajax.open("GET", window.urlApi.cliente, true);
-        
+
         window.clientes = {};
 
         ajax.onreadystatechange = () => {
           if(ajax.readyState === 4 && ajax.status === 200)
           {
             var clientes = JSON.parse(ajax.responseText);
-            
+
             let html = "";
             for(let i = 0 ; i<clientes.length ; i++){
               window.clientes[clientes[i].cpf] = clientes[i];
@@ -296,9 +296,11 @@
 
             e.preventDefault();
 
-            
+
 
         });
     </script>
+
+		<script src="../src/js/buscaCEP.js"></script>
 </body>
 </html>
