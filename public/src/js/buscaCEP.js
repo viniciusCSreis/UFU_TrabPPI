@@ -1,4 +1,4 @@
-
+﻿
  // Registra o evento blur do campo "cep", ou seja, quando o usuário sair do campo "cep" faremos a consulta dos dados
  $("#inputCep").blur(function(){
 
@@ -20,7 +20,8 @@
              console.log(erro);
              if (!erro) {
                  // Insere os dados em cada campo
-                 $("#inputEstado").val(dadosRetorno.estado);
+                 $("#inputCidade").val(dadosRetorno.localidade)
+                 $("#inputEstado").val(dadosRetorno.uf);
                  $("#inputRua").val(dadosRetorno.logradouro);
                  $("#inputBairro").val(dadosRetorno.bairro);
 
