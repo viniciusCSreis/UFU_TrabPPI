@@ -99,7 +99,7 @@
             	result.forEach((imovel, index) => {
             		window.imoveis[imovel.id] = imovel;
             		html+="<tr>";
-            		html+=`<td>${index}</td>`;
+            		html+=`<td>${index+1}</td>`;
             		html+=`<td>${imovel.Cliente.nome}</td>`;
             		html+=`<td>${imovel.Endereco.rua}, ${imovel.Endereco.numero} - ${imovel.Endereco.bairro}</td>`;
             		html+=`

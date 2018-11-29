@@ -1,10 +1,10 @@
 function escolherArquivo(event,index){
-  event.preventDefault();
-  document.getElementById('fileUpload'+index).click();
+    event.preventDefault();
+    document.getElementById('fileUpload'+index).click();
 }
 function enviarArquivo(index)
 {
-    
+
     var formData = new FormData(document.getElementById('formImage'+index));
     console.log(index);
     $.ajax({
@@ -12,50 +12,50 @@ function enviarArquivo(index)
         type: 'POST',
         data: formData,
         success: function(data) {
-          console.log(index);
-          if(document.getElementById('fotosEnviadas'+index).value == '')
-          {
-            let json = {fotos:[]};
-            json.fotos.push(data);
-            document.getElementById('foto1_'+index).src="http://"+data;
-            document.getElementById('fotosEnviadas'+index).value=JSON.stringify(json);
-          }
-          else
-          {
-            json =  document.getElementById('fotosEnviadas'+index).value;
-            json = JSON.parse(json);
-            document.getElementById('foto'+(json.fotos.length+1)+'_'+index).src="http://"+data;
-            json.fotos.push(data);
-            document.getElementById('fotosEnviadas'+index).value=JSON.stringify(json);
+            console.log(index);
+            if(document.getElementById('fotosEnviadas'+index).value == '')
+            {
+                let json = {fotos:[]};
+                json.fotos.push(data);
+                document.getElementById('foto1_'+index).src="http://"+data;
+                document.getElementById('fotosEnviadas'+index).value=JSON.stringify(json);
+            }
+            else
+            {
+                json =  document.getElementById('fotosEnviadas'+index).value;
+                json = JSON.parse(json);
+                document.getElementById('foto'+(json.fotos.length+1)+'_'+index).src="http://"+data;
+                json.fotos.push(data);
+                document.getElementById('fotosEnviadas'+index).value=JSON.stringify(json);
 
-          }
-          
+            }
+
         },
         contentType: false,
         processData: false,
     });
-    
+
 }
 function salvarArquivo(index){
-  enviarArquivo(index);
+    enviarArquivo(index);
 }
 function listenInputFileUpload(index){
-  $("#fileUpload"+index).change(function() {
-    document.getElementById('fotos_label'+index).innerText = document.getElementById("fileUpload"+index).value;
-  });
-  
+    $("#fileUpload"+index).change(function() {
+        document.getElementById('fotos_label'+index).innerText = document.getElementById("fileUpload"+index).value;
+    });
+
 }
 function createFormArquivo(index){
-  return `
+    return `
     <form id=${"formImage"+index} style="display:none">
       <input type="file" id=${"fileUpload"+index} name="fileUpload" >
    </form>
    `;
-   
+
 }
 
 function createCarouselFotos(index){
-  return `
+    return `
 <div id=${"galeriaImagens"+index} class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
       <li data-target=${"#galeriaImagens"+index} data-slide-to="0" class="active"></li>
@@ -103,37 +103,37 @@ function createCarouselFotos(index){
   `;
 }
 
-function createInputTipoAnuncio(){
-	return `
+function createInputTipoAnuncio(index){
+    return `
     <div class="row">
       <label class="col-lg-12">
             Tipo Anuncio:
         </label>
     </div>
     <div class="btn-group btn-group-toggle" data-toggle="buttons">
-        <label class="btn btn-light btn-sm active">
+        <label class="btn btn-light btn-sm active" id=${"tipoAnuncioAlugar"+index}>
             <input type="radio" name="tipoAnuncio" value='Alugar' autocomplete="off" checked>Alugar
         </label>
-        <label class="btn btn-light btn-sm">
+        <label class="btn btn-light btn-sm" id=${"tipoAnuncioVender"+index}>
             <input type="radio" name="tipoAnuncio" value='Venda' autocomplete="off">Vender
         </label>
     </div>
 	`;
 }
 function createInputDataConstrucao(index){
-	return `
+    return `
 	  <label for="cadastrar_imovel_data">Data de Construção:</label>
     <input id=${'cadastrar_imovel_data'+index} class="form-control form-control-sm" type="date" name='dataConstrucao'>
   `;
 }
 function createInputArea(index){
-  return `
+    return `
     <label for="cadastrar_imovel_area">Área:</label>
     <input id=${'cadastrar_imovel_area'+index} class="form-control form-control-sm" type="number" min="0" name='area' placeholder="Área em M²">
   `;
 }
 function createInputQtdVagasGaragem(index){
-  return `
+    return `
 
     <label for="cadastrar_imovel_nro_vaga_garagem">Vagas de Garagem:</label>
     <input id=${'cadastrar_imovel_nro_vaga_garagem'+index} type="number" min="0" class="form-control form-control-sm" name='qtdVagasGaragem'>
@@ -141,48 +141,48 @@ function createInputQtdVagasGaragem(index){
   `;
 }
 function createInputQtdSalaJantar(index){
-  return `
+    return `
     <label for="cadastrar_imovel_qtd_sala_jantar">Quantidade de Sala de Jantar:</label>
     <input id=${'cadastrar_imovel_qtd_sala_jantar'+index} type="number" min="0" class="form-control form-control-sm" name='qtdSalaJantar'>
   `;
 }
 function createInputQtdSalaEstar(index){
-  return `
+    return `
     <label for="cadastrar_imovel_qtd_sala_estar">Sala de Estar:</label>
     <input id=${'cadastrar_imovel_qtd_sala_estar'+index} type="number" min="0" class="form-control form-control-sm" name='qtdSalaEstar'>
   `;
 }
 function createInputQtdSuites(index){
-  return `
+    return `
     <label for="cadastrar_imovel_qtd_suite">Suítes:</label>
     <input id=${'cadastrar_imovel_qtd_suite'+index} type="number" min="0" class="form-control form-control-sm" name='qtdSuites'>
   `;
 }
 function createInputQtdQuartos(index){
-  return `
+    return `
     <label for="cadastrar_imovel_qtd_quartos">Quartos:</label>
     <input id=${'cadastrar_imovel_qtd_quartos'+index}  type="number" min="0" class="form-control form-control-sm" name='qtdQuartos'>
   `;
 }
-function createInputArmarioEmbutido(){
-  return `
+function createInputArmarioEmbutido(index){
+    return `
   <div class="row">
     <label class="col-md-12">
         Armario Embutido:
     </label>
   </div>
   <div class="btn-group btn-group-toggle" data-toggle="buttons">
-    <label class="btn btn-light btn-sm active">
+    <label class="btn btn-light btn-sm active" id=${'armarioEmbutidoSim'+index}>
         <input type="radio" name="armarioEmbutido" value='1' autocomplete="off" checked>Sim
     </label>
-    <label class="btn btn-light btn-sm">
+    <label class="btn btn-light btn-sm" id=${'armarioEmbutidoNao'+index}>
         <input type="radio" name="armarioEmbutido" value='0' autocomplete="off">Nao
     </label>
   </div>
   `;
 }
-function createInputTipoImovel(){
-  return `
+function createInputTipoImovel(index){
+    return `
   <div class="row">
   <label class="col-md-12">
       Tipo de Imóvel:
@@ -190,35 +190,35 @@ function createInputTipoImovel(){
 </div>
 
 <div class="btn-group btn-group-toggle" data-toggle="buttons">
-  <label class="btn btn-light btn-sm active" onclick="$('.cadastrar_imovel_apartamento').collapse('hide');">
+  <label id=${"tipoImovelCasa"+index} class="btn btn-light btn-sm active" onclick="$('.cadastrar_imovel_apartamento').collapse('hide');">
       <input type="radio" name="tipoImovel"  value='Casa' autocomplete="off" checked>Casa
   </label>
-  <label class="btn btn-light btn-sm" onclick="$('.cadastrar_imovel_apartamento').collapse('show');">
+  <label id=${"tipoImovelAp"+index} class="btn btn-light btn-sm" onclick="$('.cadastrar_imovel_apartamento').collapse('show');">
       <input type="radio" name="tipoImovel"  value='Apartamento' autocomplete="off">Apartamento
   </label>
 </div>
   `
 }
-function createInputAndar(){
-  return `
+function createInputAndar(index){
+    return `
   <label for="cadastrar_imovel_nro_andar">Andar:</label>
-  <input type="number" min="0" class="form-control form-control-sm" name='andar'>
+  <input id=${'andar'+index} type="number" min="0" class="form-control form-control-sm" name='andar'>
   `;
 }
-function createInputValorCondominio(){
-  return`
+function createInputValorCondominio(index){
+    return`
   <label for="cadastrar_imovel_valor_condominio">Valor de condomínio:</label>
-  <input type="number" min="0" class="form-control form-control-sm" name='valorCondominio'>
+  <input id=${"valorCondominio"+index} type="number" min="0" class="form-control form-control-sm" name='valorCondominio'>
   `;
 }
 function createInputDescricao(index){
-  return `
+    return `
   <label for="cadastrar_imovel_descricao">Descrição:</label>
   <textarea id=${'cadastrar_imovel_descricao'+index} class="form-control form-control-sm" name='descricao'></textarea>
   `
 }
-function createInputPorteiro24h(){
-  return`
+function createInputPorteiro24h(index){
+    return`
   <div class="row">
   <label class="col-md-12">
       Apartamento tem Porteiro 24h:
@@ -226,23 +226,23 @@ function createInputPorteiro24h(){
 </div>
 
 <div class="btn-group btn-group-toggle" data-toggle="buttons">
-  <label class="btn btn-light btn-sm active">
-      <input type="radio" name="porteiro24h" value='1' autocomplete="off" checked>Sim
+  <label id=${"porteiro24hSim"+index} class="btn btn-light btn-sm active">
+      <input  type="radio" name="porteiro24h" value='1' autocomplete="off" checked>Sim
   </label>
-  <label class="btn btn-light btn-sm">
-      <input type="radio" name="porteiro24h" value='0' autocomplete="off">Nao
+  <label id=${"porteiro24hNao"+index} class="btn btn-light btn-sm">
+      <input  type="radio" name="porteiro24h" value='0' autocomplete="off">Nao
   </label>
 </div>
   `;
 }
 function createInputCpfCliente(){
-  return `
+    return `
   <label for="cadastrar_imovel_descricao">Selecionar Cliente:</label>
   <select class="form-control form-control-sm" name='cpfCliente'><option value='12'>a2</option></select>
   `;
 }
 function createInputValorImovel(index){
-  return `
+    return `
   <label for="valor">Valor do Imóvel:</label>
   <div class="input-group input-group-sm mb-3">
       <div class="input-group-prepend">
@@ -254,13 +254,13 @@ function createInputValorImovel(index){
   `;
 }
 function createBtAdicionar(index){
-  return `
+    return `
     <input type="submit" class="center_block btn btn-success"  value="Adicicionar">
   `;
 }
 function createModalCadastrarImovel(elemento,index,method,adiciona){
-		console.log(elemento);
-        elemento.innerHTML = `
+    console.log(elemento);
+    elemento.innerHTML = `
 
         <div class="modal fade" id=${"cadastrarImovel"+index} tabindex="-1" role="dialog" aria-labelledby="Imovel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -272,7 +272,7 @@ function createModalCadastrarImovel(elemento,index,method,adiciona){
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form class="container fundo" action=${window.urlApi.imovel} method='${method}'>
+                    <form class="container fundo" id=${"formCadastrarImovel"+index} action=${window.urlApi.imovel} method='${method}'>
                         <div class="form-row">
                             <div class="form-group col-md-3">                               
                                 ${createInputTipoAnuncio(index)}
@@ -374,59 +374,136 @@ function createModalCadastrarImovel(elemento,index,method,adiciona){
 
 
         `;
-        loadClientesInModalCadastrar();
-        listenInputFileUpload(index);
-       
+    loadClientesInModalCadastrar();
+    listenInputFileUpload(index);
+
 }
 function showModalCadastrarImovel(index){
-	$('#cadastrarImovel'+index).modal('show');
+    $('#tipoImovelCasa'+index).children()[0].click();
+    $('#formCadastrarImovel'+index)[0].reset();
+    $('#cadastrarImovel'+index).modal('show');
+
+
+
 }
 function openModalById(id,index){
-	$('#cadastrar_imovel_area'+index)[0].value=window.imoveis[id].area;
-	$('#cadastrar_imovel_data'+index)[0].value=window.imoveis[id].dataConstrucao;
-	$('#cadastrar_imovel_nro_vaga_garagem'+index)[0].value=window.imoveis[id].qtdVagasGaragem;
-	$('#cadastrar_imovel_qtd_sala_jantar'+index)[0].value=window.imoveis[id].qtdSalaJantar;
-	$('#cadastrar_imovel_qtd_sala_estar'+index)[0].value=window.imoveis[id].qtdSalaEstar;
-	$('#cadastrar_imovel_qtd_suite'+index)[0].value=window.imoveis[id].qtdSuites;
-	$('#cadastrar_imovel_qtd_quartos'+index)[0].value=window.imoveis[id].qtdQuartos;
-	$('#valor'+index)[0].value=window.imoveis[id].valorImovel;
-  $('#cadastrar_imovel_descricao'+index)[0].value=window.imoveis[id].descricao;
-  for(i=0;i<window.imoveis[id].fotos.length;i++)
-  {
-    document.getElementById('foto'+(i+1)+'_'+index).src="http://"+window.imoveis[id].fotos[i];
-  }
-  
+    $('#formCadastrarImovel'+index)[0].reset();
+    $('#cadastrar_imovel_area'+index)[0].value=window.imoveis[id].area;
+    $('#cadastrar_imovel_data'+index)[0].value=window.imoveis[id].dataConstrucao;
+    $('#cadastrar_imovel_nro_vaga_garagem'+index)[0].value=window.imoveis[id].qtdVagasGaragem;
+    $('#cadastrar_imovel_qtd_sala_jantar'+index)[0].value=window.imoveis[id].qtdSalaJantar;
+    $('#cadastrar_imovel_qtd_sala_estar'+index)[0].value=window.imoveis[id].qtdSalaEstar;
+    $('#cadastrar_imovel_qtd_suite'+index)[0].value=window.imoveis[id].qtdSuites;
+    $('#cadastrar_imovel_qtd_quartos'+index)[0].value=window.imoveis[id].qtdQuartos;
+    $('#valor'+index)[0].value=window.imoveis[id].valorImovel;
+    $('#cadastrar_imovel_descricao'+index)[0].value=window.imoveis[id].descricao;
+    $('#andar'+index)[0].value=window.imoveis[id].andar;
+    $('#valorCondominio'+index)[0].value=window.imoveis[id].valorCondominio;
+    for(i=0;i<window.imoveis[id].fotos.length;i++)
+    {
+        document.getElementById('foto'+(i+1)+'_'+index).src="http://"+window.imoveis[id].fotos[i];
+    }
 
-	$('.cep')[1].value = window.imoveis[id].Endereco.cep;
-  $('.cidade')[1].value = window.imoveis[id].Endereco.cidade;
-  $('.uf')[1].value = window.imoveis[id].Endereco.estado;
-  $('.rua')[1].value = window.imoveis[id].Endereco.rua;
-  $('.numero')[1].value = window.imoveis[id].Endereco.numero;
-  $('.bairro')[1].value = window.imoveis[id].Endereco.bairro;       	
-  window.id = id;
-  $('#cadastrarImovel'+index).modal("show");
+    if(window.imoveis[id].tipoAnuncio == "Alugar")
+    {
+        $('#tipoAnuncioAlugar'+index)[0].className = "btn btn-light btn-sm active";
+        $('#tipoAnuncioAlugar'+index).children()[0].checked = true;
+        $('#tipoAnuncioVender'+index)[0].className = "btn btn-light btn-sm";
+        $('#tipoAnuncioVender'+index).children()[0].checked = false;
+
+    }
+    else
+    {
+        $('#tipoAnuncioAlugar'+index)[0].className = "btn btn-light btn-sm";
+        $('#tipoAnuncioAlugar'+index).children()[0].checked = false;
+        $('#tipoAnuncioVender'+index)[0].className = "btn btn-light btn-sm active";
+        $('#tipoAnuncioVender'+index).children()[0].checked = true;
+    }
+
+
+    if(window.imoveis[id].armarioEmbutido)
+    {
+        $('#armarioEmbutidoSim'+index)[0].className = "btn btn-light btn-sm active";
+        $('#armarioEmbutidoSim'+index).children()[0].checked = true;
+        $('#armarioEmbutidoNao'+index)[0].className = "btn btn-light btn-sm";
+        $('#armarioEmbutidoNao'+index).children()[0].checked = false;
+
+    }
+    else
+    {
+        $('#armarioEmbutidoSim'+index)[0].className = "btn btn-light btn-sm";
+        $('#armarioEmbutidoSim'+index).children()[0].checked = false;
+        $('#armarioEmbutidoNao'+index)[0].className = "btn btn-light btn-sm active";
+        $('#armarioEmbutidoNao'+index).children()[0].checked = true;
+    }
+
+    if(window.imoveis[id].tipoImovel=="Casa")
+    {
+        $('#tipoImovelCasa'+index)[0].className = "btn btn-light btn-sm active";
+        $('#tipoImovelCasa'+index).children()[0].checked = true;
+        $('#tipoImovelCasa'+index).children()[0].click();
+        $('#tipoImovelAp'+index)[0].className = "btn btn-light btn-sm";
+        $('#tipoImovelAp'+index).children()[0].checked = false;
+
+    }
+    else
+    {
+        $('#tipoImovelCasa'+index)[0].className = "btn btn-light btn-sm";
+        $('#tipoImovelCasa'+index).children()[0].checked = false;
+        $('#tipoImovelAp'+index)[0].className = "btn btn-light btn-sm active";
+        $('#tipoImovelAp'+index).children()[0].checked = true;
+        $('#tipoImovelAp'+index).children()[0].click();
+    }
+
+    if(window.imoveis[id].porteiro24h)
+    {
+        $('#porteiro24hSim'+index)[0].className = "btn btn-light btn-sm active";
+        $('#porteiro24hSim'+index).children()[0].checked = true;
+        $('#porteiro24hNao'+index)[0].className = "btn btn-light btn-sm";
+        $('#porteiro24hNao'+index).children()[0].checked = false;
+
+    }
+    else
+    {
+        $('#porteiro24hSim'+index)[0].className = "btn btn-light btn-sm";
+        $('#porteiro24hSim'+index).children()[0].checked = false;
+        $('#porteiro24hNao'+index)[0].className = "btn btn-light btn-sm active";
+        $('#porteiro24hNao'+index).children()[0].checked = true;
+    }
+
+    // porteiro24h
+
+
+    $('.cep')[index -1 ].value = window.imoveis[id].Endereco.cep;
+    $('.cidade')[index -1 ].value = window.imoveis[id].Endereco.cidade;
+    $('.uf')[index -1 ].value = window.imoveis[id].Endereco.estado;
+    $('.rua')[index -1 ].value = window.imoveis[id].Endereco.rua;
+    $('.numero')[index -1 ].value = window.imoveis[id].Endereco.numero;
+    $('.bairro')[index -1 ].value = window.imoveis[id].Endereco.bairro;
+    window.id = id;
+    $('#cadastrarImovel'+index).modal("show");
 }
 function loadClientesInModalCadastrar(){
-	$.ajax({
+    $.ajax({
         url:window.urlApi.cliente,
         type:"GET",
         dataType:"json",
 
         success: function(result) {
-        	
-        	let html = "";
-        	result.forEach((cliente, index) => {
-        		html += `<option value=${cliente.cpf}>${cliente.nome}</option>`;
-        	})
-        	$( "[name='cpfCliente']" ).empty();
-        	$( "[name='cpfCliente']" ).append( html );
+
+            let html = "";
+            result.forEach((cliente, index) => {
+                html += `<option value=${cliente.cpf}>${cliente.nome}</option>`;
+            })
+            $( "[name='cpfCliente']" ).empty();
+            $( "[name='cpfCliente']" ).append( html );
         },
 
         error: function(xhr, status, error){
-          console.log(xhr);
-          console.log(status);
-          console.log(error);
+            console.log(xhr);
+            console.log(status);
+            console.log(error);
         },
 
-      })
+    })
 }

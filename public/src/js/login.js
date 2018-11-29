@@ -14,6 +14,9 @@ function submitLogin()
     {
       window.location.pathname = window.urlRestrito;
     }
+    else{
+        $("#mensagemErro").show();
+    }
   }
   ajax.send(`email=${email}&password=${password}`);
   
